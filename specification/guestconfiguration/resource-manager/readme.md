@@ -45,7 +45,18 @@ input-file:
 - Microsoft.GuestConfiguration/preview/2018-01-20-preview/guestconfiguration.json
 
 ```
-
+## Suppression
+``` yaml
+directive:
+  - suppress: UniqueResourcePaths
+    from: guestconfiguration.json
+    where: $.paths
+    reason: Microsoft.GuestConfiguration is a proxy resource provider under Microsoft. Please refer PR https://github.com/Azure/azure-rest-api-specs-pr/pull/540
+  - suppress: OperationsAPIImplementation
+    from: guestconfiguration.json
+    where: $.paths
+    reason: Microsoft.GuestConfiguration is a proxy resource provider under Microsoft.Compute. However, Operations API for is implmented. So, suppressing the false positive. Please refer PR https://github.com/Azure/azure-rest-api-specs-pr/pull/540
+```
 ---
 # Code Generation
 
